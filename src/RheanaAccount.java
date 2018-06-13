@@ -35,10 +35,13 @@ JTextField txtAnswer;
 //String username,password;
 //do i have overriding?
 	public RheanaAccount(){
-		//firstFrame.dispose();
+		//initialize jframe
 		accFrame = new JFrame();
+		//set size of jframe
 		accFrame.setSize(450,650);
+		//initialize panel
 		panAccount = new JPanel();
+		//set size of panel
 		panAccount.setSize(600,600);	
 	}
 	
@@ -189,15 +192,5 @@ JTextField txtAnswer;
 	 
 	
 	}
-	//});
-	 //}
 
-	// }
-
-//	@Override
-	
-		// TODO Auto-generated method stub
-		
-	//}
-	
 	
