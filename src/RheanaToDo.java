@@ -24,7 +24,7 @@ public class RheanaToDo extends RheanaAccount{
 	JLayeredPane lpanTodo = new JLayeredPane();
 	JPanel panToDo,panAdd,panDisplay;
 	JButton btn1, btn2;
-	JTextField txt1;
+	JTextField txt1, txt2;
 	String hi;
 	JButton btnRemove;
 	JLabel lbl1;
