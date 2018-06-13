@@ -46,29 +46,44 @@ JTextField txtAnswer;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		//create new JLabel
 		JLabel lblImage2 = new JLabel();
+		//set value of imageicon
 		ImageIcon img2g12 = new ImageIcon("C:\\Users\\Rhea\\ICS4USummative1\\summative\\account.png");
-		Image image2 = img2g12.getImage(); // transform it 
-		Image newimg2 = image2.getScaledInstance(450,650, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+		// transform it 
+		Image image2 = img2g12.getImage();
+		//resize image
+		Image newimg2 = image2.getScaledInstance(450,650, java.awt.Image.SCALE_SMOOTH); 
+		//add new imageicon
 		ImageIcon img2g2 = new ImageIcon(newimg2);
+		//set label to image
 		lblImage2.setIcon(img2g2);
+		//set size and location
 		lblImage2.setBounds(0,0,450,650);
-		System.out.println(username + password);
-		
+		//create jlayeredpane
 		JLayeredPane pane3 = new JLayeredPane();
 		
+		//set location of frame
 		accFrame.setLocation((int) getToolkit().getDefaultToolkit().getScreenSize().getWidth()/2 - accFrame.getWidth()/2,(int) getToolkit().getDefaultToolkit().getScreenSize().getHeight()/2 - accFrame.getHeight()/2);
+		//set layout to null
 		panAccount.setLayout(null);
+		//create new jlabel
 		lblAccount = new JLabel("Your Account");
+		//set size and location
 		lblAccount.setBounds(125,50,400,50);
+		//customize font
 		lblAccount.setFont(new Font("Impact", Font.PLAIN, 35));
+		//set foregound colour to white
 		lblAccount.setForeground(Color.WHITE);
+		//initialize label
 		lblDisplayUser = new JLabel("Username: ");
+		//set size and location of jlabel
 		lblDisplayUser.setBounds(20,100,100,70);
+		//customize font
 		lblDisplayUser.setFont(new Font("Serif", Font.PLAIN, 20));
+		//set foreground colour
 		lblDisplayUser.setForeground(Color.white);
-		lblUser3 = new JLabel("fix this");
-		lblUser3.setText(username);
+		//create new label
 		lblUser3.setBounds(130,100,100,70);
 		lblUser3.setFont(new Font("Serif", Font.PLAIN, 20));
 		lblUser3.setForeground(Color.white);
