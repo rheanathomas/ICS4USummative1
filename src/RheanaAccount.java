@@ -44,7 +44,7 @@ JTextField txtAnswer;
 	
 	public void actionPerformed(ActionEvent e) {
 		JLabel lblImage2 = new JLabel();
-		ImageIcon img2g12 = new ImageIcon("C:\\Users\\Rhea\\summative\\account.png");
+		ImageIcon img2g12 = new ImageIcon("C:\\Users\\Rhea\\ICS4USummative1\\summative\\account.png");
 		Image image2 = img2g12.getImage(); // transform it 
 		Image newimg2 = image2.getScaledInstance(450,650, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		ImageIcon img2g2 = new ImageIcon(newimg2);

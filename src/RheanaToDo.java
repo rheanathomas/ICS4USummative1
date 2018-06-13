@@ -24,7 +24,7 @@ public class RheanaToDo extends RheanaAccount{
 	JLayeredPane lpanTodo = new JLayeredPane();
 	JPanel panToDo,panAdd,panDisplay;
 	JButton btn1, btn2;
-	JTextField txt1, txt2;
+	JTextField txt1;
 	String hi;
 	JButton btnRemove;
 	JLabel lbl1;
@@ -46,14 +46,14 @@ public class RheanaToDo extends RheanaAccount{
 	public void createGui(){
 		
 		lblImage3 = new JLabel(); 
-		ImageIcon img2g13 = new ImageIcon("C:\\Users\\Rhea\\summative\\todo.png");
+		ImageIcon img2g13 = new ImageIcon("C:\\Users\\Rhea\\ICS4USummative1\\summative\\todo.png");
 		Image image3 = img2g13.getImage(); // transform it 
 		Image newimg3 = image3.getScaledInstance(450,650, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		ImageIcon img2g3 = new ImageIcon(newimg3);
 		lblImage3.setIcon(img2g3);
 		lblImage3.setBounds(0,0,450,650);
 		lblImage4 = new JLabel();
-		ImageIcon img2g14 = new ImageIcon("C:\\Users\\Rhea\\summative\\input.png");
+		ImageIcon img2g14 = new ImageIcon("C:\\Users\\Rhea\\ICS4USummative1\\summative\\input.png");
 		Image image4 = img2g14.getImage(); // transform it 
 		Image newimg4 = image4.getScaledInstance(450,650, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		ImageIcon img2g4 = new ImageIcon(newimg4);

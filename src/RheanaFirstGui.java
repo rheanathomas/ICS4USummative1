@@ -68,7 +68,7 @@ public class RheanaFirstGui extends JFrame{
 		 btnLog.setForeground(Color.WHITE);
 		 btnLog.setBackground(mybrwn);
 		 lblImage = new JLabel();
-		ImageIcon img2g1 = new ImageIcon("C:\\Users\\Rhea\\summative\\firstgui.png");
+		ImageIcon img2g1 = new ImageIcon("C:\\Users\\Rhea\\ICS4USummative1\\summative\\firstgui.png");
 		Image image = img2g1.getImage(); // transform it 
 		Image newimg = image.getScaledInstance(450,650, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		ImageIcon img2g = new ImageIcon(newimg);
