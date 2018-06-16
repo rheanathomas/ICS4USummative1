@@ -1,4 +1,5 @@
 
+package src;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -44,56 +45,87 @@ public class RheanaToDo extends RheanaAccount{
 	}
 	
 	public void createGui(){
-		
+		//create new components
 		lblImage3 = new JLabel(); 
-		ImageIcon img2g13 = new ImageIcon("C:\\Users\\Rhea\\ICS4USummative1\\summative\\todo.png");
-		Image image3 = img2g13.getImage(); // transform it 
-		Image newimg3 = image3.getScaledInstance(450,650, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-		ImageIcon img2g3 = new ImageIcon(newimg3);
-		lblImage3.setIcon(img2g3);
-		lblImage3.setBounds(0,0,450,650);
-		lblImage4 = new JLabel();
-		ImageIcon img2g14 = new ImageIcon("C:\\Users\\Rhea\\ICS4USummative1\\summative\\input.png");
-		Image image4 = img2g14.getImage(); // transform it 
-		Image newimg4 = image4.getScaledInstance(450,650, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-		ImageIcon img2g4 = new ImageIcon(newimg4);
-		lblImage4.setIcon(img2g4);
-		lblImage4.setBounds(0,0,450,650);
 		panToDo = new JPanel();
-		//if text goes out of bounds of panel....
-		panToDo.setBounds(40,150,375,350);
-		panToDo.setLayout(new BoxLayout(panToDo, BoxLayout.Y_AXIS));
-		lpanTodo.setLayout(null);
 		panDisplay = new JPanel();
-		panDisplay.setLayout(null);
-		lpanTodo.setBounds(200,0,500,500);
 		panAdd = new JPanel();
-		panAdd.setBounds(0,0,500,500);
 		txt1 = new JTextField("");
-		panAdd.setLayout(null);
-		panAdd.setBounds(0, 0, 400, 400);
-		btn2 = new JButton("Done");
 		JLabel lblAdd = new JLabel("Add your task in the textbox");
-		lblAdd.setForeground(Color.white);
-        lblAdd.setBounds(140,50,300,75);
-        txt1.setBounds(75,120,300,50);
-        btn2.setBounds(192,200,75,30);
-        btn2.setBackground(Color.white);
-        panAdd.add(lblAdd);
-		panAdd.add(btn2);
-		panAdd.add(txt1);
-		panAdd.setOpaque(false);
-		panToDo.setOpaque(false);
-		panAdd.setVisible(false);
 		btn1 = new JButton("Add");
 		btnRemove = new JButton("Remove");
+		btn2 = new JButton("Done");
+		lblImage4 = new JLabel();
+		
+		//create new imageicon
+		ImageIcon img2g13 = new ImageIcon("C:\\Users\\Rhea\\ICS4USummative1\\summative\\todo.png");
+		// transform it into an image
+		Image image3 = img2g13.getImage(); 
+		// scale it the smooth way  
+		Image newimg3 = image3.getScaledInstance(450,650, java.awt.Image.SCALE_SMOOTH); 
+		//put image in an imageicon
+		ImageIcon img2g3 = new ImageIcon(newimg3);
+		//put image in label
+		lblImage3.setIcon(img2g3);
+		//set bounds of jlabel
+		lblImage3.setBounds(0,0,450,650);
+		
+		//create new imageicon
+		ImageIcon img2g14 = new ImageIcon("C:\\Users\\Rhea\\ICS4USummative1\\summative\\input.png");
+		// transform it into an image
+		Image image4 = img2g14.getImage(); 
+		// scale it the smooth way  
+		Image newimg4 = image4.getScaledInstance(450,650, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+		//put image in an imageicon
+		ImageIcon img2g4 = new ImageIcon(newimg4);
+		//put image in label
+		lblImage4.setIcon(img2g4);
+		//set bounds of jlabel
+		lblImage4.setBounds(0,0,450,650);
+	
+		//if text goes out of bounds of panel....
+		
+		//set layouts of jpanels to null
+		panDisplay.setLayout(null);
+		panAdd.setLayout(null);
+		panToDo.setLayout(new BoxLayout(panToDo, BoxLayout.Y_AXIS));
+		lpanTodo.setLayout(null);
+		
+		//set size and locations of components
+		panToDo.setBounds(40,150,375,350);
+		lpanTodo.setBounds(200,0,500,500);
+		panAdd.setBounds(0,0,500,500);
+		panAdd.setBounds(0, 0, 400, 400);
+		lblAdd.setBounds(140,50,300,75);
+	    txt1.setBounds(75,120,300,50);
+	    btn2.setBounds(192,200,75,30);
 		btn1.setBounds(40,550,100,40);
 		btnRemove.setBounds(315,550,100,40);
+		panDisplay.setBounds(0,0,450,600);
+		
+		//set colour of text
+		lblAdd.setForeground(Color.white);
+       
+		//set background colour of button
+        btn2.setBackground(Color.white);
+       
+        //make panels transparent
+		panAdd.setOpaque(false);
+		panToDo.setOpaque(false);
+		panDisplay.setOpaque(false);
+		
+		//set components as invisible
+		panAdd.setVisible(false);
+		lblImage4.setVisible(false);
+	
+		//add components to panels
 		panDisplay.add(btn1);
 		panDisplay.add(btnRemove);
-		panDisplay.setBounds(0,0,450,600);
-		panDisplay.setOpaque(false);
-		lblImage4.setVisible(false);
+	    panAdd.add(lblAdd);
+		panAdd.add(btn2);
+		panAdd.add(txt1);
+		
+		//add components to the layeredpanel
 		lpanTodo.add(panToDo,new Integer(2));
 		lpanTodo.add(panDisplay,new Integer(2));
 		lpanTodo.add(panAdd,new Integer(2));
@@ -103,73 +135,97 @@ public class RheanaToDo extends RheanaAccount{
 		todoFrame.add(lpanTodo);
 		todoFrame.setVisible(true);
 		
+		//call method
 		actions();
 		
 	}
 		
 	public void actions(){
-	btn1.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				panToDo.setVisible(false);
-				panDisplay.setVisible(false);
-	            lblImage3.setVisible(false);
-	         
-				panAdd.setVisible(true);
-				lblImage4.setVisible(true);
-				
-				 btn2.addActionListener(new ActionListener(){
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						
-						panAdd.setVisible(false);
-						output();	
-					}
-						
-			});
-				
-			}});	
+		//add action listener to button
+		btn1.addActionListener(new ActionListener(){
 	
-		btnRemove.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			
-				 String strRemove= JOptionPane.showInputDialog("Please input the number/index of the item you would like to delete");
-				 remove(strRemove);
-				 panToDo.removeAll();
-				 btn1.setBounds(40,550,100,40);
-				 btnRemove.setBounds(315,550,100,40);
-				 output();
-				 panToDo.setVisible(true);
-				 panDisplay.setVisible(true);
-			    }
-
-			private void remove(String str) {
-				 int1 = Integer.parseInt(str);
-				 label.remove(int1-1);
-			}});}
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//set components as invisible
+					panToDo.setVisible(false);
+					panDisplay.setVisible(false);
+		            lblImage3.setVisible(false);
+		         
+		            //set components to visible
+					panAdd.setVisible(true);
+					lblImage4.setVisible(true);
+					
+					 //add action listener to button
+					 btn2.addActionListener(new ActionListener(){
 	
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							//make panel invisible
+							panAdd.setVisible(false);
+							//call method
+							output();	
+						}
+							
+				});
+					
+				}});	
+		    //add action listener to button
+			btnRemove.addActionListener(new ActionListener(){
+	
+				@Override
+				public void actionPerformed(ActionEvent e) {
+				
+					//put response the the input dialog in a string
+					 String strRemove= JOptionPane.showInputDialog("Please input the number/index of the item you would like to delete");
+					 //call the remove method with the string as the parameter
+					 remove(strRemove);
+					 //remove components in jpanel
+					 panToDo.removeAll();
+					 //set size and location of button
+					 btn1.setBounds(40,550,100,40);
+					 //set size and location of button
+					 btnRemove.setBounds(315,550,100,40);
+					 //call otput method
+					 output();
+					 //make components visible
+					 panToDo.setVisible(true);
+					 panDisplay.setVisible(true);
+				    }
+	
+				private void remove(String str) {
+					//value of int1 is equal to the inputted string
+					 int1 = Integer.parseInt(str);
+					 //remove the arraylist component
+					 label.remove(int1-1);
+				}});}
+		
 	public void output() {
 				
 		do { 
+			//set value
 			 hi = txt1.getText();
-			 System.out.println(hi);
+			 //create new label
 			 image = new JLabel(); 
+			 //set text in label to the contents on the string
 			 image.setText(hi);
+			 //set size and location of label
 			 image.setBounds(0,0,10,10); 
+			 //set jlabel as visible
 			 image.setOpaque(true); 
+			 //add jlabel to arraylist
 			 label.add(image);
+			 //set value of textbox to null
 			 txt1.setText("");    
+			 //set value of string to null
 			 hi = null;
+	     //repeat while hi is not null
 	    }while(hi!=null);
 				
 		for(JLabel j:label) { 
+			//add components of arraylist to jpanel
 		    panToDo.add(j); 
 		}
+		//set components as visible
 	    panDisplay.setVisible(true);
 		lblImage3.setVisible(true);
 		panToDo.setVisible(false);

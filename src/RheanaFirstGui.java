@@ -1,10 +1,7 @@
-
-//import java.awt.Color
-//import java.awt.Container;
-
+package src;
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.*;
-
-
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -45,7 +42,7 @@ public class RheanaFirstGui extends JFrame{
 	Color myyellow = new Color(255,254,138);
 	
 	public RheanaFirstGui() {
-		//create JFrame
+		//create jframe
 		firstFrame = new JFrame();
 		//set size of jframe
 		firstFrame.setSize(450,650);

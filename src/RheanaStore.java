@@ -1,3 +1,4 @@
+package src;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +21,7 @@ import javax.swing.JTextField;
 //make everything look nicer
 
 public class RheanaStore extends RheanaAccount implements ActionListener{
+	//declare variables
 	 String saltStr, realStr;
 	 Scanner y;
 	 boolean duplicate;
@@ -31,12 +33,17 @@ public class RheanaStore extends RheanaAccount implements ActionListener{
 	 JButton btnCode,btnBackground,btnAvatar;
 	 
 	public RheanaStore(){
+		//create new jframe
 		storeFrame = new JFrame();
+		//set size of jframe
 		storeFrame.setSize(450,650);
+		//create the exit button
 	    storeFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		//firstPane.setPreferredSize(new Dimension(550, 400));
+		//stop uses from resizing jframe
 		storeFrame.setResizable(false);
+		//make jframe visible
 		storeFrame.setVisible(true);
+		//set location of jframe
 		storeFrame.setLocation((int) getToolkit().getDefaultToolkit().getScreenSize().getWidth()/2 - storeFrame.getWidth()/2,(int) getToolkit().getDefaultToolkit().getScreenSize().getHeight()/2 - storeFrame.getHeight()/2);
 		
 	}
@@ -47,14 +54,22 @@ public class RheanaStore extends RheanaAccount implements ActionListener{
 	
 	
 	public void createGui(){
+		//create new jpanel
 		panStore = new JPanel();
-		panStore.setSize(450,600);
+		//initialize jbutton
 		btnCode = new JButton("Code");
+		//create new jbutton
+		btnBackground = new JButton("Unlock backgrounds");
+		//set size of jpanel
+		panStore.setSize(450,600);
+		//set size and location of button
 		btnCode.setBounds(100,100,100,100);
 		
-		btnBackground = new JButton("Unlock backgrounds");
+		//add button to jpanel
 	    panStore.add(btnCode);
+	    //add panel to frame
 		storeFrame.add(panStore);
+		//get rid of account jframe
 		accFrame.dispose();
 	}
 	
@@ -66,8 +81,11 @@ public class RheanaStore extends RheanaAccount implements ActionListener{
 				// TODO Auto-generated method stub
 				//if code is used more than once a day....
 				if((points-10)>=0){
+					//call the price method
 					price(10);
+					//call method
 					getSaltString();
+					//show message that gives you the code
 					JOptionPane.showMessageDialog(null,"Your code is " + saltStr);
 				}
 				
@@ -78,23 +96,32 @@ public class RheanaStore extends RheanaAccount implements ActionListener{
 	}
 	
 	protected String getSaltString() {
+		//set value of string
         String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        //create new stringbuilder
         StringBuilder salt = new StringBuilder();
+        //create random
         Random rnd = new Random();
-        while (salt.length() < 6) { // length of the random string.
+        
+        while (salt.length() < 6) { 
+        	//set value of inex
             int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            //update value
             salt.append(SALTCHARS.charAt(index));
         }
+        //set value of the string to the value of salt variable
         saltStr = salt.toString();
-       System.out.println(saltStr);
+        //call verify login method
        VerifyLogin(saltStr, CODEFILENAME);
+       //if boolean is false
        if(duplicate==false){
+    	   //set value of realstr variable to value of saltstr
     	   realStr = saltStr;
+    	   //call save method
     	   save();
-    	   System.out.print("Your code is " + realStr);
-    	 
        }
        else{
+    	   //call method
     	   getSaltString();
        }
         return saltStr;
@@ -103,7 +130,9 @@ public class RheanaStore extends RheanaAccount implements ActionListener{
 }
 
 	public void price (int p){
+		//update points variable
 		points = points - p;
+		//show message telling you how many points you have
 		JOptionPane.showMessageDialog(null,"That cost " + p + "points. You now have " + points + "points "); 
 		}
 		
