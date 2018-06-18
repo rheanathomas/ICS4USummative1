@@ -1,4 +1,4 @@
-package src;
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.*;
@@ -30,10 +30,10 @@ public class RheanaFirstGui extends JFrame{
 	String username,password,user1,pswrd1;
 	private static Scanner x;
 	JFrame firstFrame;
-	public static final String FILENAME = "C:\\Users\\Rhea\\filename.txt";
+	public static final String FILENAME = "C:\\Users\\filename.txt";
 	JPanel panFirst,  panLog;
 	JLabel lblTitle,lblUser,lblPswrd,lblUserLogin,lblPswrdLogin;
-	JButton btnSign, btnLog,btnAcc, btnCheck, btnCreate, btnAccount;
+	JButton btnSign, btnLog,btnAcc, btnCheck, btnCreate, btnAccount, btnBack;
 	JTextField txtUser,txtPswrd, txtUserLogin,txtPswrdLogin;
 	JLayeredPane firstPane = getLayeredPane();
 	JLayeredPane panSign = getLayeredPane();
@@ -77,7 +77,7 @@ public class RheanaFirstGui extends JFrame{
 		 
 		 //initialize labels
 		 lblImage = new JLabel();
-		ImageIcon img2g1 = new ImageIcon("C:\\Users\\Rhea\\ICS4USummative1\\summative\\firstgui.png");
+		ImageIcon img2g1 = new ImageIcon("C:\\ICS4USummative1\\summative\\firstgui.png");
 		// transform it 
 		Image image = img2g1.getImage(); 
 		// scale it the smooth way  
@@ -118,7 +118,7 @@ public class RheanaFirstGui extends JFrame{
 		//add components to frame
 		firstPane.add(panFirst,new Integer(2));
 		firstPane.add(lblImage,new Integer(1));
-		
+		firstFrame.add(firstPane);
 		//set visibility to true
 		firstPane.setVisible(true);
 		firstFrame.setVisible(true);
@@ -168,13 +168,21 @@ public class RheanaFirstGui extends JFrame{
 			 txtPswrd = new JTextField();
 			 txtPswrd.setFont(new Font("Serif", Font.PLAIN, 26));
 			 txtPswrd.setBounds(70,270,300,50);
+			
 			 btnAcc = new JButton("Create your account");
 			//set size and location of button
 			 btnAcc.setBounds(120,350,200,50);
+			 
+			 
+			 btnBack = new JButton("Go back");
+			 btnBack.setBounds(120,450,200,50);
 			//create text colour to white
 			 btnAcc.setForeground(Color.WHITE);
 			 //set background colour to brown
 			 btnAcc.setBackground(mybrwn);
+			 btnBack.setForeground(Color.WHITE);
+			 //set background colour to brown
+			 btnBack.setBackground(mybrwn);
 			 
 			 //add components to layered panel
 			 panSign.add(lblUser, new Integer(2));
@@ -182,14 +190,15 @@ public class RheanaFirstGui extends JFrame{
 			 panSign.add(lblPswrd,new Integer(2));
 			 panSign.add(txtPswrd, new Integer(2));
 			 panSign.add(btnAcc, new Integer(2));
+			 panSign.add(btnBack, new Integer(2));
 			 //make panel visible
 			 panSign.setVisible(true);
 			 //add panel to frame
 			 firstFrame.add(panSign);
 			 //call new class
 			 RheanaAccount account = new RheanaAccount();
+			 
 			 //add actionlistener to button so that it will register when users press on the button
-			 btnAcc.addActionListener(account);
 			 btnAcc.addActionListener(new ActionListener(){
 
 				@Override
@@ -198,9 +207,34 @@ public class RheanaFirstGui extends JFrame{
 					firstFrame.dispose();
 					//call save method
 					save();
+					account.createGui();
+					account.Actions();
 				}
 				 
-			 });	 
+			 });	
+
+				btnBack.addActionListener(new ActionListener(){
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// make components invisible
+						panSign.setVisible(false);
+						lblUser.setVisible(false);
+						lblPswrd.setVisible(false);
+						txtUser.setVisible(false);
+						txtPswrd.setVisible(false);
+						btnAcc.setVisible(false);
+						btnBack.setVisible(false);
+						panSign.setVisible(false);
+					
+						//make components visible
+						 firstPane.setVisible(true);
+						 panFirst.setVisible(true);
+						 
+					
+				}
+				
+			});
 		   }
 		
 			if(btnLog ==(JButton) e.getSource()){
@@ -241,8 +275,10 @@ public class RheanaFirstGui extends JFrame{
 					//initialize button
 					btnCheck = new JButton("Log In");
 					//set size and location
-					btnCheck.setBounds(160,380,115,50);
+					btnCheck.setBounds(60,380,115,50);
 					
+				btnBack = new JButton("Go back");
+				btnBack.setBounds(275,380,115,50);
 					//add components to panel
 					panLog.add(lblLog);
 					panLog.add(lblUserLogin);
@@ -250,6 +286,7 @@ public class RheanaFirstGui extends JFrame{
 					panLog.add(lblPswrdLogin);
 					panLog.add(txtPswrdLogin);
 					panLog.add(btnCheck);
+					panLog.add(btnBack);
 					
 					//make panel transparent
 			     	panLog.setOpaque(false);
@@ -266,22 +303,37 @@ public class RheanaFirstGui extends JFrame{
 				    	@Override
 						public void actionPerformed(ActionEvent e) {
 				    		//set value of strings to the value of the trxtfields
-							username = txtUserLogin.getText();
-							password = txtPswrdLogin.getText();
+				    		System.out.println("hi");
+							user1 = txtUserLogin.getText();
+							pswrd1 = txtPswrdLogin.getText();
 							//call method
 				    		VerifyLogin(user1,pswrd1,FILENAME);
 				    		
 				    		if(found==true){
 				    			//call class if method returns true
-				    			RheanaAccount account = new RheanaAccount();
+				    		    RheanaAccount account = new RheanaAccount();
+				    			account.createGui();
+				    			firstFrame.dispose();
 				    		}
 				    		else{
 				    		//if method is not true, show messagebox
 				    		JOptionPane.showMessageDialog(null,"Sorry, the username/password is incorrect");
-				    		
+				    		System.out.println("it didnt");
 				    		}
 						}
 				    });}
+		    btnBack.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// make components invisible
+					panLog.setVisible(false);
+					firstPane.setVisible(true);
+					panFirst.setVisible(true);
+					btnSign.setVisible(true);
+				}
+		    });
+		
 			}
 		  
 		 public void save(){
@@ -345,7 +397,7 @@ public class RheanaFirstGui extends JFrame{
 						tempUsername = x.next();
 						tempPassword = x.next();
 						
-						if(tempUsername.trim().equals(username.trim()) && tempPassword.trim().equals(password.trim()))
+						if(tempUsername.trim().equals(user1.trim()) && tempPassword.trim().equals(pswrd1.trim()))
 								{
 							//set boolean to true
 							found = true;

@@ -1,5 +1,4 @@
 
-package src;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -27,20 +26,25 @@ public class RheanaToDo extends RheanaAccount{
 	JButton btn1, btn2;
 	JTextField txt1;
 	String hi;
-	JButton btnRemove;
+	JButton btnRemove, btnBack;
 	JLabel lbl1;
 	int int1;
 	JLabel lblImage3;
 	JLabel lblImage4;
 	
+	
 	public RheanaToDo(){
+		//create new jframe
 		todoFrame = new JFrame();
+		//set size of jframe
 		todoFrame.setSize(450,650);
+		//make jframe visible
 		todoFrame.setVisible(true);
+		//make frame non resizable
 		todoFrame.setResizable(false);
-		todoFrame.setResizable(false);
+		//set size of panel
 		lpanTodo.setPreferredSize(new Dimension(550, 400));
-		//todoFrame.setVisible(true);
+		//set location of frame
 		todoFrame.setLocation((int) getToolkit().getDefaultToolkit().getScreenSize().getWidth()/2 - todoFrame.getWidth()/2,(int) getToolkit().getDefaultToolkit().getScreenSize().getHeight()/2 - todoFrame.getHeight()/2);
 	}
 	
@@ -56,9 +60,10 @@ public class RheanaToDo extends RheanaAccount{
 		btnRemove = new JButton("Remove");
 		btn2 = new JButton("Done");
 		lblImage4 = new JLabel();
+		btnBack = new JButton("Go back");
 		
 		//create new imageicon
-		ImageIcon img2g13 = new ImageIcon("C:\\Users\\Rhea\\ICS4USummative1\\summative\\todo.png");
+		ImageIcon img2g13 = new ImageIcon("C:\\ICS4USummative1\\summative\\todo.png");
 		// transform it into an image
 		Image image3 = img2g13.getImage(); 
 		// scale it the smooth way  
@@ -69,6 +74,7 @@ public class RheanaToDo extends RheanaAccount{
 		lblImage3.setIcon(img2g3);
 		//set bounds of jlabel
 		lblImage3.setBounds(0,0,450,650);
+	
 		
 		//create new imageicon
 		ImageIcon img2g14 = new ImageIcon("C:\\Users\\Rhea\\ICS4USummative1\\summative\\input.png");
@@ -82,9 +88,7 @@ public class RheanaToDo extends RheanaAccount{
 		lblImage4.setIcon(img2g4);
 		//set bounds of jlabel
 		lblImage4.setBounds(0,0,450,650);
-	
-		//if text goes out of bounds of panel....
-		
+
 		//set layouts of jpanels to null
 		panDisplay.setLayout(null);
 		panAdd.setLayout(null);
@@ -100,7 +104,8 @@ public class RheanaToDo extends RheanaAccount{
 	    txt1.setBounds(75,120,300,50);
 	    btn2.setBounds(192,200,75,30);
 		btn1.setBounds(40,550,100,40);
-		btnRemove.setBounds(315,550,100,40);
+		btnRemove.setBounds(175,550,100,40);
+		btnBack.setBounds(315,550,100,40);
 		panDisplay.setBounds(0,0,450,600);
 		
 		//set colour of text
@@ -121,6 +126,7 @@ public class RheanaToDo extends RheanaAccount{
 		//add components to panels
 		panDisplay.add(btn1);
 		panDisplay.add(btnRemove);
+		panDisplay.add(btnBack);
 	    panAdd.add(lblAdd);
 		panAdd.add(btn2);
 		panAdd.add(txt1);
@@ -179,17 +185,26 @@ public class RheanaToDo extends RheanaAccount{
 					 String strRemove= JOptionPane.showInputDialog("Please input the number/index of the item you would like to delete");
 					 //call the remove method with the string as the parameter
 					 remove(strRemove);
+					 int question = JOptionPane.showConfirmDialog(null, "Did you complete the task?", null, JOptionPane.YES_NO_OPTION);
+				        if (question == JOptionPane.YES_OPTION) {
+				        	gainPoints(5);
+				        }
+				        else{
+				        	
+				        }
 					 //remove components in jpanel
 					 panToDo.removeAll();
 					 //set size and location of button
 					 btn1.setBounds(40,550,100,40);
 					 //set size and location of button
-					 btnRemove.setBounds(315,550,100,40);
+					 btnRemove.setBounds(200,550,100,40);
+					btnBack.setBounds(315,550,100,40);
 					 //call otput method
 					 output();
 					 //make components visible
 					 panToDo.setVisible(true);
 					 panDisplay.setVisible(true);
+					 btnBack.setVisible(true);
 				    }
 	
 				private void remove(String str) {
@@ -197,7 +212,26 @@ public class RheanaToDo extends RheanaAccount{
 					 int1 = Integer.parseInt(str);
 					 //remove the arraylist component
 					 label.remove(int1-1);
-				}});}
+				}});
+
+		RheanaAccount account = new RheanaAccount();
+		btnBack.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// dispose jframe
+				todoFrame.dispose();
+				//call method from RheanaAccount to create gui
+				account.createGui();
+				//call method
+				account.Actions();
+			
+		}
+		
+	});
+	
+	
+	}
 		
 	public void output() {
 				

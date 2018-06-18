@@ -1,9 +1,9 @@
-package src;
+
 public class RheanaMain {
 	public static void main(String[] args) {
+		//call class
 		RheanaFirstGui g = new RheanaFirstGui();
-	///	ToDo todo = new ToDo();
+		//call method
 		g.createGui();
-	//	todo.createGui();
 	}
 }
